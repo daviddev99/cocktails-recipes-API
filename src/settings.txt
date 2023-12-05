@@ -1,0 +1,28 @@
+Ejercicio práctico
+
+Se solicita el desarrollo de una pequeña aplicación en ReactJs que cumpla con los siguientes
+puntos.
+
+1. Maquetar la aplicación lo más similar al prototipo adjuntado en la sección de recursos
+(link de figma).
+2. Implementar la lógica necesaria con código limpio y ordenado, haciendo uso de la API
+proporcionada, en la sección de recursos.
+3. En el prototipo hay un historial de búsqueda, al recargar la página debe permanecer
+dicho historial.
+
+Recursos
+
+Prototipo:
+https://www.figma.com/file/GaK2Ygn8CCjl1knEekSB8d/Challenge?type=design&node-id=1-
+118&mode=design&t=KsqHJiyOFtGNFndT-0
+API:
+Tragos por nombre: https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
+Tragos por ingredientes: http://www.thecocktaildb.com/api/json/v1/1/search.php?i=vodka
+Tragos por categoría:
+http://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink
+Trago más elegido: https://www.thecocktaildb.com/api/json/v1/1/random.php
+
+Recomendaciones
+- A la hora de maquetar utilizar la librería de styled-components.
+- Para el consumo de APIS utilizar la librería axios.
+- Para íconos utilizar la librería de @iconify/react.
