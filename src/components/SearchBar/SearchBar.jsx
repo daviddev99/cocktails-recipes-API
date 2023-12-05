@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext  } from "react";
 import { GlobalContext } from "../../context/global";
 import { SearchBarContainerStyled } from "./SearchBar.styled";
 
@@ -9,7 +9,9 @@ export const SearchBar = () => {
   const navigate = useNavigate();
 
   function handleSearch() {
-    if (searchText) {
+    if (searchText === "") {
+      return;
+    } else {
       navigate(`/search/${searchText}`);
     }
   }

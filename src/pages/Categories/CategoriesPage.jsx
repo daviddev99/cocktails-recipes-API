@@ -10,7 +10,7 @@ export const CategoriesPage = () => {
   const { isLoading, setIsLoading } = useContext(GlobalContext);
   useEffect(() => {
     const getCategories = async () => {
-      setIsLoading(true)
+      setIsLoading(true);
       try {
         const res = await axios.get(
           "https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list"
@@ -18,7 +18,7 @@ export const CategoriesPage = () => {
         setCategories(res.data.drinks);
       } catch (error) {
         console.log(error);
-        setIsLoading(false)
+        setIsLoading(false);
       } finally {
         setIsLoading(false);
       }
@@ -29,7 +29,7 @@ export const CategoriesPage = () => {
     <CategoriesContaier>
       <h3>🍸 Categorías 🍹</h3>
       {isLoading ? (
-        <Loader/>
+        <Loader />
       ) : (
         <GridContainer>
           {categories.map((category, index) => {
