@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   MainContainerStyled,
   MainSectionStyled,
-  PopularDrinkSection,
   TextContainer,
   FormContainerStyled,
   FormStyled,
@@ -11,20 +11,23 @@ import {
   ContactContainerStyled,
   InputContainer,
   DetailedText,
+  PopularDrinkSection,
+  ContentStyled,
+  ButtonsContainerStyled,
+  ButtonsStyled,
+  StyledSearchButton,
 } from "./Home.styled";
-import { Routes, Route } from "react-router-dom";
-import { HomeContent } from "../../components/HomeContent/HomeContent";
-import { SearchPage } from "../Search/SearchPage";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { CocktailCard } from "../../components/CocktailCard/CocktailCard";
-import { CategoriesPage } from "../Categories/CategoriesPage";
-import { SingleCategory } from "../SingleCategory/SingleCategory";
 import { useContext } from "react";
 import { GlobalContext } from "../../context/global";
 import Loader from "../../components/Loader/Loader";
+import { IconsComponent } from "../../components/IconsComponent/IconsComponent";
 
 export const Home = () => {
   const [cocktail, setCocktail] = useState({});
   const { isLoading, setIsLoading } = useContext(GlobalContext);
+  const { setSearchType, searchText, searchType } = useContext(GlobalContext);
 
   useEffect(() => {
     const getMostChosenDrink = async () => {
@@ -42,18 +45,60 @@ export const Home = () => {
     getMostChosenDrink();
   }, []);
 
+  const navigate = useNavigate();
+  const handleCategoryPage = () => {
+    navigate("/categories");
+  };
+
+  const handleNavigate = () => {
+    if (!searchText.length) return;
+    navigate(`/search/${searchText}`);
+  };
+
   return (
     <>
       <MainSectionStyled>
         <MainContainerStyled>
-          <Routes>
-            <Route path="/" element={<HomeContent />} />
-            <Route path="/search/:query" element={<SearchPage />} />
-            <Route path="/categories" element={<CategoriesPage />} />
-            <Route path="/categories/:category" element={<SingleCategory />} />
-            <Route path="/search/:query" element={<SearchPage />} />
-          </Routes>
+          <ContentStyled>
+            <h3>
+              Encuentra las mejores recetas en{" "}
+              <DetailedText>Cócteles.</DetailedText>
+            </h3>
+            <p>¿Que trago te gustaría preparar hoy?</p>
+            <ButtonsContainerStyled>
+              <ButtonsStyled
+                onClick={() => setSearchType("search.php?s=")}
+                active={searchType === "search.php?s="}
+              >
+                Por nombre
+              </ButtonsStyled>
+              <ButtonsStyled
+                onClick={() => setSearchType("filter.php?i=")}
+                active={searchType === "filter.php?i="}
+              >
+                Por ingredientes
+              </ButtonsStyled>
+              <ButtonsStyled onClick={handleCategoryPage}>
+                Por categoría
+              </ButtonsStyled>
+              <div>
+                <SearchBar />
+                <StyledSearchButton onClick={handleNavigate}>
+                  Buscar
+                </StyledSearchButton>
+              </div>
+            </ButtonsContainerStyled>
+          </ContentStyled>
         </MainContainerStyled>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="226"
+          height="226"
+          viewBox="0 0 168 226"
+          fill="none"
+        >
+          <circle cx="113" cy="113" r="113" fill="#FFDE59" />
+        </svg>
       </MainSectionStyled>
 
       <PopularDrinkSection>
@@ -95,6 +140,7 @@ export const Home = () => {
             más.
           </p>
           <FormContainerStyled>
+            <div></div>
             <FormStyled action="#">
               <InputContainer>
                 <input
@@ -108,6 +154,7 @@ export const Home = () => {
               </span>
               <button>Suscribirme ahora</button>
             </FormStyled>
+            <IconsComponent />
           </FormContainerStyled>
         </ContactContainerStyled>
       </FormSectionStyled>

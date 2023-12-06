@@ -1,25 +1,38 @@
 import styled from "styled-components";
+import img from "../../assets/img/Portada 01.png";
 import { Link } from "react-router-dom";
 
-export const CategoriesContaier = styled.div`
-width: 100%;
-display: flex;
-flex-direction: column;
-align-items: center; 
-justify-content: center;
-gap: 2em;
+export const CategoriesSection = styled.section`
+  width: 100%;
+  background-image: url("${img}");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+`;
 
-h3{
+export const CategoriesContaier = styled.div`
+  margin: auto;
+  max-width: 1000px;
+  width: 83%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+  overflow: none;
+
+  h3 {
     font-size: 2em;
     color: #fff;
-}
+  }
 `;
 
 export const StyledLink = styled(Link)`
-background: yellow;
-color: #483285;
-text-align: center;
-font-weight: bold;
-padding: 1em;
-border-radius: 16px;
-`
+  background: yellow;
+  color: #483285;
+  text-align: center;
+  font-weight: bold;
+  padding: 1em;
+  border-radius: 16px;
+`;

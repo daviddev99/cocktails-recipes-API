@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { CategoriesContaier, StyledLink } from "./CategoriesPage.styled";
+import {
+  CategoriesContaier,
+  CategoriesSection,
+  StyledLink,
+} from "./CategoriesPage.styled";
 import { GridContainer } from "../Search/SearchPage.styled";
 import { GlobalContext } from "../../context/global";
 import Loader from "../../components/Loader/Loader";
@@ -26,24 +30,26 @@ export const CategoriesPage = () => {
     getCategories();
   }, []);
   return (
-    <CategoriesContaier>
-      <h3>🍸 Categorías 🍹</h3>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <GridContainer>
-          {categories.map((category, index) => {
-            return (
-              <StyledLink
-                to={`/categories/${category.strCategory}`}
-                key={index}
-              >
-                {category.strCategory}
-              </StyledLink>
-            );
-          })}
-        </GridContainer>
-      )}
-    </CategoriesContaier>
+    <CategoriesSection>
+      <CategoriesContaier>
+        <h3>🍸 Categorías 🍹</h3>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <GridContainer>
+            {categories.map((category, index) => {
+              return (
+                <StyledLink
+                  to={`/categories/${category.strCategory}`}
+                  key={index}
+                >
+                  {category.strCategory}
+                </StyledLink>
+              );
+            })}
+          </GridContainer>
+        )}
+      </CategoriesContaier>
+    </CategoriesSection>
   );
 };

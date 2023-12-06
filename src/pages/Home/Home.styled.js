@@ -1,42 +1,111 @@
 import styled from "styled-components";
-import img from "../../images/free-photo-of-restaurante-alcohol-barra-coctel.jpeg";
+import img from "../../assets/img/Portada 01.png";
 
 export const MainSectionStyled = styled.section`
-  background-image: url(${img});
-  background-size: cover;
-  background-position: left;
-  background-repeat: no-repeat;
   width: 100%;
   height: 90vh;
-  @media (max-width: 640px){
-    display: flex;
-    align-items:center;
+  background-image: url("${img}");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  svg {
+    position: absolute;
+    right: 0;
+    bottom: -20%;
   }
 `;
 
 export const MainContainerStyled = styled.div`
   margin: auto;
   max-width: 1000px;
-  height: 90vh;
+  width: 83%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @media (max-width: 1098px) {
-    flex-direction: column;
+  position: relative;
+  overflow: none;
+`;
+
+export const HomeDivStyled = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+
+  @media only screen and (max-width: 600px) {
     justify-content: center;
-    align-items: center;
-    gap: 2em;
+  }
+`;
+
+export const ContentStyled = styled.div`
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-heigth: 700px;
+  color: #fff;
+  background: transparent
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.226);
+  border-radius: 16px;
+  
+  h3 {
+    text-wrap: balance;
+    max-width: 15ch;
+    font-size: 3em;
   }
 
-  @media (min-width: 640px) {
-    padding-top: 2em;
-    padding-bottom: 2em;
-    height: fit-content;
+  span {
+    color: yellow;
+    border-bottom: 2px solid yellow;
+  }
+
+  p {
+    margin-top: 2em;
+    font-size: 1.1em;
+  }
+`;
+
+export const ButtonsContainerStyled = styled.div`
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+
+  div {
+    display: flex;
+    gap: 1em;
+  }
+`;
+
+export const ButtonsStyled = styled.button`
+  color: ${({ active }) => (active ? "yellow" : "#fff")};
+  background-color: transparent;
+  border: ${({ active }) => (active ? "0.5px solid yellow;" : "0.5px solid #fff;")}; 
+  padding: 0.7em;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 300ms;
+  text-wrap: nowrap;
+`;
+
+export const StyledSearchButton = styled.button`
+  padding: 0.5em 1.2em;
+  text-align: center;
+  background-color: yellow;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+
+  &:active {
+    background-color: #ebdc00;
+    color: #fff;
   }
 `;
 
 export const PopularDrinkSection = styled.section`
-  background-color: #444;
+  background-color: #383838;
+  width: 100%;
+  height: 90vh;
 `;
 
 export const TextContainer = styled.div`
@@ -45,9 +114,7 @@ export const TextContainer = styled.div`
   flex-direction: column;
   gap: 2em;
   color: #fff;
-  text-wrap:balance
-
-  p,
+  text-wrap:balance p,
   strong {
     font-size: 1.5em;
   }
@@ -58,19 +125,24 @@ export const TextContainer = styled.div`
 `;
 
 export const FormSectionStyled = styled.section`
-  background-color: #444;
+  background-color: #383838;
   color: #fff;
-  `;
-  export const FormContainerStyled = styled.div`
-  text-wrap:balance;
+`;
+export const FormContainerStyled = styled.div`
+  text-wrap: balance;
   width: 100%;
-  background-color: rgb(213, 232, 248);
+  background-color: #f1f1f1;
   color: #000;
   height: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 20px;
+  position: relative;
+
+  div {
+    width: 100%;
+  }
 `;
 
 export const FormStyled = styled.form`
@@ -82,7 +154,7 @@ export const FormStyled = styled.form`
   align-items: center;
 
   @media (max-width: 640px) {
-    padding: 2em
+    padding: 2em;
   }
 
   span {

@@ -1,20 +1,23 @@
 import { Link } from "react-router-dom";
 import { StyledHeader, HeaderContentContainer } from "./Header.styled";
+import img from '../../assets/img/Logo - Cocktails.png'
 
 export const Header = () => {
   return (
     <StyledHeader>
       <HeaderContentContainer>
+        <span style={{color: '#222222'}}>Categorias</span>
         <Link to={"/"}>
           <img
-            src="https://cdn-icons-png.flaticon.com/512/1247/1247395.png"
+            src={img}
             alt=""
           />
         </Link>
 
-        <div>
-          <Link to={"/categories"}>Categorías</Link>
-        </div>
+        <nav>
+          <Link to={"/categories"}>Menu</Link>
+          <Link to={"/categories"}>Recetas</Link>
+        </nav>
       </HeaderContentContainer>
     </StyledHeader>
   );
