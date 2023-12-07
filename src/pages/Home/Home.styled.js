@@ -8,12 +8,6 @@ export const MainSectionStyled = styled.section`
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-
-  svg {
-    position: absolute;
-    right: 0;
-    bottom: -20%;
-  }
 `;
 
 export const MainContainerStyled = styled.div`
@@ -26,16 +20,6 @@ export const MainContainerStyled = styled.div`
   justify-content: space-between;
   position: relative;
   overflow: none;
-`;
-
-export const HomeDivStyled = styled.div`
-  width: 100%;
-  height: auto;
-  display: flex;
-
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-  }
 `;
 
 export const ContentStyled = styled.div`
@@ -80,7 +64,8 @@ export const ButtonsContainerStyled = styled.div`
 export const ButtonsStyled = styled.button`
   color: ${({ active }) => (active ? "yellow" : "#fff")};
   background-color: transparent;
-  border: ${({ active }) => (active ? "0.5px solid yellow;" : "0.5px solid #fff;")}; 
+  border: ${({ active }) =>
+    active ? "0.5px solid yellow;" : "0.5px solid #fff;"};
   padding: 0.7em;
   border-radius: 20px;
   cursor: pointer;
@@ -108,16 +93,25 @@ export const PopularDrinkSection = styled.section`
   height: 90vh;
 `;
 
+export const PopularDrinkContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  @media (max-width: 940px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 4em;
+  }
+`;
+
 export const TextContainer = styled.div`
   max-width: 50ch;
   display: flex;
   flex-direction: column;
   gap: 2em;
   color: #fff;
-  text-wrap:balance p,
-  strong {
-    font-size: 1.5em;
-  }
+  text-wrap: balance;
 
   h3 {
     font-size: 2.2em;
@@ -143,6 +137,14 @@ export const FormContainerStyled = styled.div`
   div {
     width: 100%;
   }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
+
+  div {
+    display: 100%;
+  }
 `;
 
 export const FormStyled = styled.form`
@@ -153,7 +155,7 @@ export const FormStyled = styled.form`
   gap: 2em;
   align-items: center;
 
-  @media (max-width: 640px) {
+  @media (max-width: 800px) {
     padding: 2em;
   }
 
@@ -171,6 +173,7 @@ export const FormStyled = styled.form`
   button {
     padding: 1em;
     background-color: yellow;
+    border: none;
     outline: none;
     border-radius: 16px;
     width: 100%;

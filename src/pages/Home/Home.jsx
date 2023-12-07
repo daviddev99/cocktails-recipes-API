@@ -16,6 +16,7 @@ import {
   ButtonsContainerStyled,
   ButtonsStyled,
   StyledSearchButton,
+  PopularDrinkContainer,
 } from "./Home.styled";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { CocktailCard } from "../../components/CocktailCard/CocktailCard";
@@ -23,11 +24,13 @@ import { useContext } from "react";
 import { GlobalContext } from "../../context/global";
 import Loader from "../../components/Loader/Loader";
 import { IconsComponent } from "../../components/IconsComponent/IconsComponent";
+import { YellowCirle } from "../../components/YellowCircle/YellowCirle";
 
 export const Home = () => {
   const [cocktail, setCocktail] = useState({});
   const { isLoading, setIsLoading } = useContext(GlobalContext);
-  const { setSearchType, searchText, searchType } = useContext(GlobalContext);
+  const { setSearchType, searchType, searchText, setHistory } =
+    useContext(GlobalContext);
 
   useEffect(() => {
     const getMostChosenDrink = async () => {
@@ -50,20 +53,23 @@ export const Home = () => {
     navigate("/categories");
   };
 
-  const handleNavigate = () => {
-    if (!searchText.length) return;
-    navigate(`/search/${searchText}`);
-  };
+  function handleSearch(e) {
+    if (e.key === "Enter" || e.button === 0) {
+      if (searchText === "") {
+        return;
+      } else {
+        navigate(`/search/${searchText}`);
+        setHistory((prevHistory) => [...prevHistory, searchText]);
+      }
+    }
+  }
 
   return (
     <>
       <MainSectionStyled>
         <MainContainerStyled>
           <ContentStyled>
-            <h3>
-              Encuentra las mejores recetas en{" "}
-              <DetailedText>Cócteles.</DetailedText>
-            </h3>
+            <h3>Encuentra las mejores recetas en Cócteles.</h3>
             <p>¿Que trago te gustaría preparar hoy?</p>
             <ButtonsContainerStyled>
               <ButtonsStyled
@@ -83,56 +89,58 @@ export const Home = () => {
               </ButtonsStyled>
               <div>
                 <SearchBar />
-                <StyledSearchButton onClick={handleNavigate}>
+                <StyledSearchButton onClick={handleSearch}>
                   Buscar
                 </StyledSearchButton>
               </div>
+              {/* {history.length > 1 ? <ul>
+                {history.map((item) => <li key={item}>{item}</li>)}
+              </ul> : ''} */}
             </ButtonsContainerStyled>
           </ContentStyled>
         </MainContainerStyled>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="226"
-          height="226"
-          viewBox="0 0 168 226"
-          fill="none"
-        >
-          <circle cx="113" cy="113" r="113" fill="#FFDE59" />
-        </svg>
+        <YellowCirle />
       </MainSectionStyled>
 
       <PopularDrinkSection>
         <MainContainerStyled>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <CocktailCard
-              id={cocktail.idDrink}
-              image={cocktail.strDrinkThumb}
-              title={cocktail.strDrink}
-            />
-          )}
-          <TextContainer>
-            <h3>
-              Los tragos <DetailedText>más elegidos</DetailedText>
-            </h3>
-            <p>¡Explora un mundo de sabores con cada sorbo!</p>
-            <strong>
-              Descubre nuestra exquisita sección de tragos, donde cada día te
-              presentamos las elecciones mas elegantes y cautivadoras.
-            </strong>
-            <p>
-              ¡Deleita tus sentidos con nuestras creaciones únicas y vive
-              momentos inolvidables con cada copa!
-            </p>
-          </TextContainer>
+          <PopularDrinkContainer>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <CocktailCard
+                id={cocktail.idDrink}
+                image={cocktail.strDrinkThumb}
+                title={cocktail.strDrink}
+              />
+            )}
+            <TextContainer>
+              <h3>
+                Los tragos{" "}
+                {searchType === "search.php?s=" ? (
+                  <DetailedText>más buscados</DetailedText>
+                ) : (
+                  "más buscados"
+                )}
+              </h3>
+              <p>¡Explora un mundo de sabores con cada sorbo!</p>
+              <strong>
+                Descubre nuestra exquisita sección de tragos, donde cada día te
+                presentamos las elecciones mas elegantes y cautivadoras.
+              </strong>
+              <p>
+                ¡Deleita tus sentidos con nuestras creaciones únicas y vive
+                momentos inolvidables con cada copa!
+              </p>
+            </TextContainer>
+          </PopularDrinkContainer>
         </MainContainerStyled>
       </PopularDrinkSection>
 
       <FormSectionStyled>
         <ContactContainerStyled>
           <h3>
-            No esperes mas,<br></br>
+            No esperes más,<br></br>
             conviertete en un <DetailedText>experto coctelero</DetailedText>
           </h3>
           <p>
@@ -145,7 +153,7 @@ export const Home = () => {
               <InputContainer>
                 <input
                   type="text"
-                  placeholder="Inserta tu direccion de correo"
+                  placeholder="Inserta tu correo electronico"
                 />
               </InputContainer>
               <span>

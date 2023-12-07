@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import img from '../../assets/img/Portada 02.png'
+import Slider from "react-slick";
 
 export const SearchSectionStyled = styled.section`
   width: 100%;
@@ -21,14 +22,8 @@ export const SearchContainer = styled.div`
   heigth: fit-content;
 `;
 
-export const GridContainer = styled.div`
+export const SliderStyled = styled(Slider)`
+display: flex;
+gap: 2em;
 width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  overflow-y: auto;
-  max-height: 350px;
-  @media (max-width: 1280px) {
-    max-height: 550px;
-  }
 `;

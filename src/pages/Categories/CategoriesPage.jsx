@@ -5,7 +5,6 @@ import {
   CategoriesSection,
   StyledLink,
 } from "./CategoriesPage.styled";
-import { GridContainer } from "../Search/SearchPage.styled";
 import { GlobalContext } from "../../context/global";
 import Loader from "../../components/Loader/Loader";
 
@@ -36,7 +35,7 @@ export const CategoriesPage = () => {
         {isLoading ? (
           <Loader />
         ) : (
-          <GridContainer>
+          <div>
             {categories.map((category, index) => {
               return (
                 <StyledLink
@@ -47,7 +46,7 @@ export const CategoriesPage = () => {
                 </StyledLink>
               );
             })}
-          </GridContainer>
+          </div>
         )}
       </CategoriesContaier>
     </CategoriesSection>

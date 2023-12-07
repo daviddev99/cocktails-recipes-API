@@ -26,6 +26,12 @@ export const CategoriesContaier = styled.div`
     font-size: 2em;
     color: #fff;
   }
+
+  div{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2em;
+  }
 `;
 
 export const StyledLink = styled(Link)`

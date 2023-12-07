@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { Icon } from "@iconify/react";
 import { useParams } from "react-router-dom";
 import { CocktailCard } from "../../components/CocktailCard/CocktailCard";
-import { GridContainer } from "../Search/SearchPage.styled";
+import { SliderStyled } from "../Search/SearchPage.styled";
 import {
   SingleCategoryContainerStyled,
   SingleCategorySectionStyled,
@@ -14,6 +15,19 @@ export const SingleCategory = () => {
   const { category } = useParams();
   const [results, setResults] = useState([]);
   const { isLoading, setIsLoading } = useContext(GlobalContext);
+
+  const settings = {
+    infinite: false,
+    slidesToShow: results?.length > 2 ? 2.4 : 1,
+    slidesToScroll: 1,
+    nextArrow: (
+      <Icon
+        icon="ph:arrow-left-bold"
+        style={{ fontSize: "1em", width: "1em", color: "white", zIndex: "1" }}
+      />
+    ),
+    prevArrow: <Icon icon="ph:arrow-right-bold" />,
+  };
 
   useEffect(() => {
     const getDrinksByCategory = async () => {
@@ -40,7 +54,7 @@ export const SingleCategory = () => {
         ) : (
           <>
             <h3>{category}</h3>
-            <GridContainer>
+            <SliderStyled {...settings}>
               {results.map((cocktail) => {
                 const {
                   idDrink: id,
@@ -51,7 +65,7 @@ export const SingleCategory = () => {
                   <CocktailCard id={id} title={title} image={image} key={id} />
                 );
               })}
-            </GridContainer>
+            </SliderStyled>
           </>
         )}
       </SingleCategoryContainerStyled>
